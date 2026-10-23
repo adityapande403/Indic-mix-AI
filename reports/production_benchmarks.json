@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-23 23:23:23",
+  "timestamp": "2026-10-23 23:28:33",
   "hardware": {
     "platform": "win32",
     "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]"
@@ -7,100 +7,100 @@
   "tier1_model_only": {
     "batch_1": {
       "p50_ms": 0.046,
-      "p95_ms": 0.053,
-      "throughput_req_per_sec": 21090.8
+      "p95_ms": 0.055,
+      "throughput_req_per_sec": 21089.9
     },
     "batch_4": {
-      "p50_ms": 0.066,
-      "p95_ms": 0.075,
-      "throughput_req_per_sec": 58813.1
+      "p50_ms": 0.069,
+      "p95_ms": 0.076,
+      "throughput_req_per_sec": 56744.0
     },
     "batch_8": {
-      "p50_ms": 0.085,
-      "p95_ms": 0.093,
-      "throughput_req_per_sec": 92534.8
+      "p50_ms": 0.092,
+      "p95_ms": 0.098,
+      "throughput_req_per_sec": 87020.8
     },
     "batch_16": {
-      "p50_ms": 0.12,
-      "p95_ms": 0.125,
-      "throughput_req_per_sec": 132703.0
+      "p50_ms": 0.123,
+      "p95_ms": 0.14,
+      "throughput_req_per_sec": 127435.2
     }
   },
   "tier2_full_pipeline": {
-    "mean_ms": 0.7145,
-    "median_p50_ms": 0.6905,
-    "p90_ms": 0.822,
-    "p95_ms": 0.8549,
-    "p99_ms": 0.9823,
-    "min_ms": 0.6089,
-    "max_ms": 1.351,
-    "throughput_req_per_sec": 1399.6
+    "mean_ms": 0.7143,
+    "median_p50_ms": 0.6852,
+    "p90_ms": 0.8229,
+    "p95_ms": 0.8802,
+    "p99_ms": 0.9599,
+    "min_ms": 0.6163,
+    "max_ms": 1.4861,
+    "throughput_req_per_sec": 1400.0
   },
   "tier3_privacy_proxy": {
     "anonymize": {
-      "mean_ms": 0.0752,
-      "median_p50_ms": 0.067,
-      "p90_ms": 0.0947,
-      "p95_ms": 0.0975,
-      "p99_ms": 0.1408,
-      "min_ms": 0.0576,
-      "max_ms": 0.5861
+      "mean_ms": 0.0774,
+      "median_p50_ms": 0.0683,
+      "p90_ms": 0.0973,
+      "p95_ms": 0.1045,
+      "p99_ms": 0.1863,
+      "min_ms": 0.0568,
+      "max_ms": 0.578
     },
     "deanonymize": {
       "mean_ms": 0.0008,
       "median_p50_ms": 0.0007,
-      "p90_ms": 0.0011,
-      "p95_ms": 0.0013,
-      "p99_ms": 0.0019,
+      "p90_ms": 0.0012,
+      "p95_ms": 0.0015,
+      "p99_ms": 0.0022,
       "min_ms": 0.0003,
-      "max_ms": 0.0027
+      "max_ms": 0.0079
     },
     "roundtrip": {
-      "mean_ms": 0.076,
-      "median_p50_ms": 0.0677,
-      "p90_ms": 0.096,
-      "p95_ms": 0.0988,
-      "p99_ms": 0.1417,
-      "min_ms": 0.0579,
-      "max_ms": 0.587
+      "mean_ms": 0.0782,
+      "median_p50_ms": 0.0691,
+      "p90_ms": 0.0988,
+      "p95_ms": 0.1063,
+      "p99_ms": 0.1878,
+      "min_ms": 0.0571,
+      "max_ms": 0.5796
     },
-    "roundtrip_throughput_req_sec": 13157.9
+    "roundtrip_throughput_req_sec": 12787.7
   },
   "tier4_http_concurrency": {
     "concurrency_1": {
-      "mean_ms": 3.0829,
-      "median_p50_ms": 2.3896,
-      "p90_ms": 2.6996,
-      "p95_ms": 2.8105,
-      "p99_ms": 9.9504,
-      "min_ms": 2.0912,
-      "max_ms": 88.4442,
+      "mean_ms": 2.8197,
+      "median_p50_ms": 2.3381,
+      "p90_ms": 2.6761,
+      "p95_ms": 2.7811,
+      "p99_ms": 3.9126,
+      "min_ms": 1.9507,
+      "max_ms": 67.931,
       "concurrency": 1,
-      "throughput_req_per_sec": 320.9,
+      "throughput_req_per_sec": 350.9,
       "total_requests": 150
     },
     "concurrency_5": {
-      "mean_ms": 11.9945,
-      "median_p50_ms": 11.2986,
-      "p90_ms": 15.1286,
-      "p95_ms": 20.1281,
-      "p99_ms": 27.6578,
-      "min_ms": 3.3974,
-      "max_ms": 30.0821,
+      "mean_ms": 11.351,
+      "median_p50_ms": 11.348,
+      "p90_ms": 13.49,
+      "p95_ms": 14.2091,
+      "p99_ms": 14.9917,
+      "min_ms": 6.2448,
+      "max_ms": 17.9155,
       "concurrency": 5,
-      "throughput_req_per_sec": 412.8,
+      "throughput_req_per_sec": 435.8,
       "total_requests": 150
     },
     "concurrency_20": {
-      "mean_ms": 45.0068,
-      "median_p50_ms": 45.3139,
-      "p90_ms": 56.0188,
-      "p95_ms": 59.7804,
-      "p99_ms": 72.3822,
-      "min_ms": 14.9143,
-      "max_ms": 77.6831,
+      "mean_ms": 44.883,
+      "median_p50_ms": 45.8055,
+      "p90_ms": 55.4524,
+      "p95_ms": 61.0098,
+      "p99_ms": 69.2995,
+      "min_ms": 11.6389,
+      "max_ms": 72.8651,
       "concurrency": 20,
-      "throughput_req_per_sec": 426.5,
+      "throughput_req_per_sec": 424.3,
       "total_requests": 150
     }
   }

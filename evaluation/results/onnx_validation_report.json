@@ -9,23 +9,23 @@
   "latency_benchmarks": {
     "batch_1": {
       "p50_ms": 0.046,
-      "p95_ms": 0.053,
-      "throughput_req_per_sec": 21090.8
+      "p95_ms": 0.055,
+      "throughput_req_per_sec": 21089.9
     },
     "batch_4": {
-      "p50_ms": 0.066,
-      "p95_ms": 0.075,
-      "throughput_req_per_sec": 58813.1
+      "p50_ms": 0.069,
+      "p95_ms": 0.076,
+      "throughput_req_per_sec": 56744.0
     },
     "batch_8": {
-      "p50_ms": 0.085,
-      "p95_ms": 0.093,
-      "throughput_req_per_sec": 92534.8
+      "p50_ms": 0.092,
+      "p95_ms": 0.098,
+      "throughput_req_per_sec": 87020.8
     },
     "batch_16": {
-      "p50_ms": 0.12,
-      "p95_ms": 0.125,
-      "throughput_req_per_sec": 132703.0
+      "p50_ms": 0.123,
+      "p95_ms": 0.14,
+      "throughput_req_per_sec": 127435.2
     }
   },
   "model_files": {
