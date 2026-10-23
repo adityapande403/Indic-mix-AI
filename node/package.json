@@ -1,0 +1,26 @@
+{
+  "name": "indicmix",
+  "version": "0.1.0",
+  "description": "Lightweight Code-Mixed Indic Language Understanding, Moderation, and Normalization in Node.js",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/test.js",
+    "example": "node src/example.js"
+  },
+  "dependencies": {
+    "onnxruntime-node": "^1.18.0"
+  },
+  "keywords": [
+    "indic",
+    "nlp",
+    "hinglish",
+    "telgish",
+    "benglish",
+    "onnx",
+    "moderation",
+    "pii"
+  ],
+  "author": "IndicMix AI Research Team",
+  "license": "Apache-2.0"
+}

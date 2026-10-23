@@ -1,0 +1,38 @@
+classifier:
+  model_name_or_path: "xlm-roberta-base"
+  fallback_model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  output_dir: "models/checkpoints/classifier"
+  learning_rate: 3e-5
+  weight_decay: 0.01
+  num_train_epochs: 4
+  warmup_ratio: 0.1
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 32
+  gradient_accumulation_steps: 1
+  evaluation_strategy: "epoch"
+  save_strategy: "epoch"
+  load_best_model_at_end: true
+  metric_for_best_model: "macro_f1"
+  fp16: false
+  early_stopping_patience: 2
+
+token_classifier:
+  model_name_or_path: "xlm-roberta-base"
+  fallback_model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  output_dir: "models/checkpoints/pii_ner"
+  learning_rate: 4e-5
+  num_train_epochs: 5
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 32
+  label_all_tokens: false
+
+normalizer:
+  model_name_or_path: "google/mt5-small"
+  causal_candidate: "HuggingFaceTB/SmolLM2-360M-Instruct"
+  output_dir: "models/checkpoints/normalizer"
+  learning_rate: 1e-4
+  num_train_epochs: 5
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 16
+  max_source_length: 128
+  max_target_length: 128

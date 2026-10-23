@@ -1,0 +1,10 @@
+{
+  "name": "indicmix-browser",
+  "version": "0.1.0",
+  "description": "Interactive Browser Demonstration for IndicMix AI",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python -m http.server 8080 --directory ."
+  }
+}

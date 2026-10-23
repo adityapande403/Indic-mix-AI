@@ -1,0 +1,19 @@
+targets:
+  classification_latency_p95_ms: 8.0
+  pii_latency_p95_ms: 12.0
+  normalization_latency_p95_ms: 100.0
+
+test_suites:
+  warmup_runs: 20
+  benchmark_runs: 100
+  batch_sizes: [1, 4, 8, 16]
+  sequence_lengths: [16, 32, 64, 128]
+
+languages:
+  - hi_en_roman
+  - te_en_roman
+  - bn_en_roman
+  - en
+  - hi_devanagari
+  - te_telugu
+  - bn_bengali

@@ -1,0 +1,50 @@
+deterministic:
+  enabled: true
+  patterns:
+    phone:
+      regex: '(?<!\w)(?:\+?91[\s.-]?)?[6-9]\d{4}[\s.-]?\d{5}(?!\w)'
+      confidence: 0.98
+      tag: "PHONE"
+    email:
+      regex: '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
+      confidence: 0.99
+      tag: "EMAIL"
+    upi_id:
+      regex: '[a-zA-Z0-9._-]+@[a-zA-Z]{3,}'
+      confidence: 0.95
+      tag: "UPI_ID"
+    pan:
+      regex: '(?<!\w)[A-Z]{5}[0-9]{4}[A-Z](?!\w)'
+      confidence: 0.98
+      tag: "PAN"
+    aadhaar:
+      regex: '(?<!\w)[2-9]\d{3}[\s-]?\d{4}[\s-]?\d{4}(?!\w)'
+      confidence: 0.92
+      tag: "AADHAAR"
+    vehicle_registration:
+      regex: '(?<!\w)[A-Z]{2}[-\s]?[0-9]{1,2}[-\s]?[A-Z]{1,3}[-\s]?[0-9]{4}(?!\w)'
+      confidence: 0.96
+      tag: "VEHICLE_NO"
+    ifsc:
+      regex: '(?<!\w)[A-Z]{4}0[A-Z0-9]{6}(?!\w)'
+      confidence: 0.97
+      tag: "IFSC"
+    order_id:
+      regex: '(?<!\w)(?:ORD|OD|ORDER)[-_#]?[A-Z0-9]{6,12}(?!\w)'
+      confidence: 0.93
+      tag: "ORDER_ID"
+
+model_based:
+  enabled: true
+  entities:
+    - NAME
+    - ADDRESS
+    - ORGANIZATION
+  confidence_threshold: 0.65
+  label_scheme: "BIO"
+
+redaction:
+  mask_format: "[{tag}]"
+  redact_names: true
+  preserve_length: false
+  custom_masks: {}

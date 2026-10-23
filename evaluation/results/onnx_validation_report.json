@@ -1,0 +1,35 @@
+{
+  "status": "VALIDATED",
+  "dynamic_shapes": [
+    "Passed dynamic shape: batch=1, seq=16",
+    "Passed dynamic shape: batch=2, seq=32",
+    "Passed dynamic shape: batch=4, seq=64",
+    "Passed dynamic shape: batch=8, seq=128"
+  ],
+  "latency_benchmarks": {
+    "batch_1": {
+      "p50_ms": 0.046,
+      "p95_ms": 0.053,
+      "throughput_req_per_sec": 21090.8
+    },
+    "batch_4": {
+      "p50_ms": 0.066,
+      "p95_ms": 0.075,
+      "throughput_req_per_sec": 58813.1
+    },
+    "batch_8": {
+      "p50_ms": 0.085,
+      "p95_ms": 0.093,
+      "throughput_req_per_sec": 92534.8
+    },
+    "batch_16": {
+      "p50_ms": 0.12,
+      "p95_ms": 0.125,
+      "throughput_req_per_sec": 132703.0
+    }
+  },
+  "model_files": {
+    "fp32_size_kb": 857.03,
+    "int8_size_kb": 222.81
+  }
+}

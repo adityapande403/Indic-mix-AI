@@ -1,0 +1,19 @@
+{
+  "task": "text_normalization",
+  "modes": {
+    "minimal": {
+      "p50_ms": 0.015,
+      "p95_ms": 0.016
+    },
+    "english": {
+      "p50_ms": 0.03,
+      "p95_ms": 0.036
+    },
+    "native_script": {
+      "p50_ms": 0.009,
+      "p95_ms": 0.01
+    }
+  },
+  "target_p95_ms": 100.0,
+  "target_met": true
+}

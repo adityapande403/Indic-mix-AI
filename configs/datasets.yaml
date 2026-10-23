@@ -1,0 +1,28 @@
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  synthetic_dir: "data/synthetic"
+  manifests_dir: "data/manifests"
+
+splits:
+  train: 0.75
+  val: 0.15
+  test: 0.10
+  random_seed: 42
+  group_by_key: "split_group"
+
+supported_languages:
+  - hi_en_roman       # Romanized Hindi (Hinglish)
+  - te_en_roman       # Romanized Telugu (Telgish)
+  - bn_en_roman       # Romanized Bengali (Benglish)
+  - en                # Indian English / Code-mixed English
+  - hi_devanagari     # Devanagari Hindi
+  - te_telugu         # Telugu script
+  - bn_bengali        # Bengali script
+
+tasks:
+  - intent
+  - moderation
+  - pii
+  - normalization
+  - language_id

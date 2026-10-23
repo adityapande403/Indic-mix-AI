@@ -1,0 +1,57 @@
+intent:
+  taxonomy:
+    - greeting
+    - order_status
+    - payment_issue
+    - refund_request
+    - cancellation_request
+    - account_access
+    - delivery_issue
+    - technical_support
+    - complaint
+    - product_question
+    - subscription_issue
+    - unknown
+    - other
+  abstention_threshold: 0.45
+  unknown_label: "unknown"
+  calibrated: true
+  temperature: 1.15
+
+moderation:
+  categories:
+    - direct_abuse
+    - threat
+    - harassment
+    - hate_speech
+    - sexual_harassment
+    - profanity
+    - spam
+  thresholds:
+    direct_abuse: 0.50
+    threat: 0.40
+    harassment: 0.50
+    hate_speech: 0.45
+    sexual_harassment: 0.40
+    profanity: 0.60
+    spam: 0.55
+  multilabel: true
+
+language_id:
+  profiles:
+    - hi_en_roman       # Hinglish
+    - te_en_roman       # Telgish
+    - bn_en_roman       # Benglish
+    - en                # Indian English / General English
+    - hi_devanagari     # Native Hindi Devanagari script
+    - te_telugu         # Native Telugu script
+    - bn_bengali        # Native Bengali script
+    - unknown           # Short/ambiguous/unsupported
+  min_length_for_confidence: 4
+  abstention_threshold: 0.35
+
+model:
+  backbone: "xlm-roberta-base"
+  fallback_backbone: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  max_sequence_length: 128
+  batch_size: 32

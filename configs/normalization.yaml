@@ -1,0 +1,32 @@
+modes:
+  minimal:
+    description: "Fix spelling, spacing, character repetitions, and basic punctuation while preserving vocabulary and code-mixing"
+    preserve_vocabulary: true
+  english:
+    description: "Normalize code-mixed Indic text into grammatically coherent, professional English"
+    target_language: "en"
+  native_script:
+    description: "Transliterate Romanized Indic text into native script without unwanted English translation"
+    supported_targets:
+      hi_en_roman: "hi_devanagari"
+      te_en_roman: "te_telugu"
+      bn_en_roman: "bn_bengali"
+
+entity_preservation:
+  strict_mode: true
+  tracked_entities:
+    - amounts
+    - dates
+    - phone_numbers
+    - order_ids
+    - account_numbers
+    - urls
+    - codes
+  fallback_on_violation: "minimal"
+
+generation:
+  max_new_tokens: 64
+  num_beams: 1
+  temperature: 0.0
+  repetition_penalty: 1.15
+  do_sample: false

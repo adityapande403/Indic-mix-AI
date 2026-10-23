@@ -1,0 +1,19 @@
+export:
+  opset_version: 17
+  do_constant_folding: true
+  dynamic_axes:
+    input_ids: {0: "batch_size", 1: "sequence_length"}
+    attention_mask: {0: "batch_size", 1: "sequence_length"}
+    output: {0: "batch_size"}
+
+quantization:
+  method: "dynamic"           # "dynamic" or "static"
+  weight_type: "QInt8"        # or QUInt8
+  nodes_to_exclude: []
+  per_channel: false
+  reduce_range: false
+
+validation:
+  parity_tolerance_logits: 1e-3
+  parity_tolerance_probs: 1e-2
+  max_acceptable_f1_drop: 0.02

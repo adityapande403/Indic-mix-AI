@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndicMix AI — Lightweight Code-Mixed Indic NLP Playground</title>
+  <meta name="description" content="In-browser client-side NLP system for code-mixed Indic languages (Hinglish, Telgish, Benglish) with privacy-first PII redaction, intent classification, and text normalization.">
+  <link rel="stylesheet" href="src/index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-logo" id="appLogo">IM</div>
+        <div class="brand-text">
+          <h1 id="mainTitle">IndicMix AI</h1>
+          <p id="mainSubtitle">Lightweight Code-Mixed Indic Language Understanding, Moderation & Normalization</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-privacy" id="privacyBadge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          100% Local In-Browser
+        </span>
+        <span class="badge badge-wasm" id="engineBadge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          ONNX Web / JS
+        </span>
+      </div>
+    </header>
+
+    <!-- Interactive Playground -->
+    <main>
+      <section class="card" id="playgroundCard">
+        <div class="section-title">
+          <span>Input Code-Mixed Message</span>
+          <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);" id="charCountLabel">0 characters</span>
+        </div>
+
+        <!-- Sample Presets -->
+        <div class="samples-bar" id="samplesBar">
+          <button class="sample-btn" id="sampleHinglish" type="button">Hinglish Payment Issue</button>
+          <button class="sample-btn" id="sampleTelgish" type="button">Telgish Delivery Status</button>
+          <button class="sample-btn" id="sampleBenglish" type="button">Benglish Refund Request</button>
+          <button class="sample-btn" id="samplePii" type="button">PII with Phone & UPI</button>
+          <button class="sample-btn" id="sampleAbuse" type="button">Abuse Moderation Check</button>
+        </div>
+
+        <!-- Text Input -->
+        <div class="input-group">
+          <textarea id="sourceInput" placeholder="Enter noisy, informal code-mixed text (e.g. 'bhai payment deduct ho gaya par order confirm nahi dikha raha call 9876543210')..." spellcheck="false"></textarea>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-bar">
+          <div class="mode-select-group">
+            <label for="modeSelect">Normalization Mode:</label>
+            <select id="modeSelect">
+              <option value="english">Mode B: English Normalization</option>
+              <option value="minimal">Mode A: Minimal Spelling & Spacing</option>
+              <option value="native_script">Mode C: Native Script Transliteration</option>
+            </select>
+          </div>
+
+          <button class="btn-primary" id="btnAnalyze" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Analyze & Normalize
+          </button>
+        </div>
+      </section>
+
+      <!-- Results Grid -->
+      <section class="results-grid" id="resultsGrid">
+        <!-- 1. Language Profile -->
+        <div class="result-card" id="cardLanguage">
+          <div class="card-header-small">
+            <span class="card-title">Language & Script Profile</span>
+            <span class="badge" id="langBadge" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Detecting</span>
+          </div>
+          <div id="langContent">
+            <div class="meter-row">
+              <span id="langNameLabel">Primary Language</span>
+              <div class="meter-bar-container">
+                <div class="meter-fill" id="langConfidenceFill" style="width: 0%;"></div>
+              </div>
+              <span id="langConfidenceVal">0%</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;" id="langDetails">Enter text to identify code-mixed profile.</p>
+          </div>
+        </div>
+
+        <!-- 2. Intent Classification -->
+        <div class="result-card" id="cardIntent">
+          <div class="card-header-small">
+            <span class="card-title">Intent Classification</span>
+            <span class="badge" id="intentBadge" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">Ready</span>
+          </div>
+          <div id="intentContent">
+            <div style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;" id="topIntentLabel">—</div>
+            <div class="meter-row">
+              <span>Confidence</span>
+              <div class="meter-bar-container">
+                <div class="meter-fill" id="intentConfidenceFill" style="width: 0%;"></div>
+              </div>
+              <span id="intentConfidenceVal">0%</span>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-sub); margin-top: 0.5rem;" id="intentAbstentionStatus">Calibrated with temperature scaling.</p>
+          </div>
+        </div>
+
+        <!-- 3. Moderation & Safety -->
+        <div class="result-card" id="cardModeration">
+          <div class="card-header-small">
+            <span class="card-title">Safety & Moderation</span>
+            <span class="badge" id="safetyBadge" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">Safe</span>
+          </div>
+          <div id="moderationContent">
+            <div id="modMeters">
+              <div class="meter-row">
+                <span>Direct Abuse</span>
+                <div class="meter-bar-container"><div class="meter-fill safe" id="modAbuseFill" style="width: 2%;"></div></div>
+                <span id="modAbuseVal">0.02</span>
+              </div>
+              <div class="meter-row">
+                <span>Threat</span>
+                <div class="meter-bar-container"><div class="meter-fill safe" id="modThreatFill" style="width: 2%;"></div></div>
+                <span id="modThreatVal">0.02</span>
+              </div>
+              <div class="meter-row">
+                <span>Spam</span>
+                <div class="meter-bar-container"><div class="meter-fill safe" id="modSpamFill" style="width: 2%;"></div></div>
+                <span id="modSpamVal">0.02</span>
+              </div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-sub); margin-top: 0.4rem;" id="modExplanation">Harmless slang (bhai, yaar, anna) protected.</p>
+          </div>
+        </div>
+
+        <!-- 4. PII Detection & Redaction -->
+        <div class="result-card" id="cardPii" style="grid-column: span 1 / -1;">
+          <div class="card-header-small">
+            <span class="card-title">Sensitive PII Detection & Redaction</span>
+            <button class="sample-btn" id="btnToggleRedact" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Toggle Redacted View</button>
+          </div>
+          <div id="piiSpansContainer" style="margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; color: var(--text-sub);">No PII detected yet.</span>
+          </div>
+          <div class="redacted-box" id="redactedPreview">
+            [Redacted output will be displayed here]
+          </div>
+        </div>
+
+        <!-- 5. Normalized Output -->
+        <div class="result-card" id="cardNormalization" style="grid-column: span 1 / -1;">
+          <div class="card-header-small">
+            <span class="card-title">Normalized Text</span>
+            <span class="badge" id="preservationBadge" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">Entities Intact</span>
+          </div>
+          <div style="font-size: 1.05rem; color: #f1f5f9; padding: 0.5rem 0;" id="normalizedTextOutput">
+            Normalized output will appear here.
+          </div>
+        </div>
+      </section>
+
+      <!-- Status Footer -->
+      <footer class="status-bar">
+        <div class="telemetry-item">
+          <span class="indicator-dot" id="statusIndicator"></span>
+          <span id="statusEngine">Local Browser Engine Ready (WASM/JS)</span>
+        </div>
+        <div class="telemetry-item">
+          <span>Latency:</span>
+          <strong id="statusLatency" style="color: var(--text-main);">0.00 ms</strong>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+models:
+  intent:
+    enabled: true
+    backend: "onnx" # "pytorch" or "onnx"
+    model_path: "models/onnx/classifier_quantized.onnx"
+    fallback_path: "models/onnx/classifier.onnx"
+    tokenizer_path: "models/tokenizer"
+  moderation:
+    enabled: true
+    backend: "onnx"
+    model_path: "models/onnx/moderation_quantized.onnx"
+    fallback_path: "models/onnx/moderation.onnx"
+    tokenizer_path: "models/tokenizer"
+  pii:
+    enabled: true
+    deterministic_enabled: true
+    model_enabled: true
+    model_path: "models/onnx/pii_ner_quantized.onnx"
+    fallback_path: "models/onnx/pii_ner.onnx"
+    tokenizer_path: "models/tokenizer"
+  normalization:
+    enabled: true
+    mode: "minimal"
+    target_language: "en"
+
+runtime:
+  num_threads: 4
+  inter_op_num_threads: 2
+  execution_provider: "CPUExecutionProvider"
+  enable_profiling: false
