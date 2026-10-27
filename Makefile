@@ -16,6 +16,8 @@ help:
 	@echo "  make test-node   - Run Node.js test suite with node:test"
 	@echo "  make benchmark   - Run end-to-end latency and throughput benchmarks"
 	@echo "  make serve       - Run production FastAPI service with Uvicorn"
+	@echo "  make hf-stage    - Prepare models and card for Hugging Face Hub"
+	@echo "  make hf-upload   - Upload staged model bundle to Hugging Face Hub"
 
 install:
 	$(PIP) install -e . --no-deps
@@ -47,3 +49,9 @@ benchmark:
 
 serve:
 	uvicorn api.app:app --host 0.0.0.0 --port 8000 --reload
+
+hf-stage:
+	$(PYTHON) scripts/prepare_hf_model.py
+
+hf-upload:
+	$(PYTHON) scripts/upload_to_hf.py --repo-id Adityapande403/IndicMix-AI

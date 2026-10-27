@@ -38,6 +38,7 @@ models/checkpoints/*
 !models/checkpoints/.gitkeep
 models/onnx/*
 !models/onnx/.gitkeep
+models/hf_hub/*
 data/raw/*
 !data/raw/.gitkeep
 
