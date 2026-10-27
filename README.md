@@ -2,10 +2,11 @@
 > **Lightweight Code-Mixed Indic Language Understanding, Moderation, and Normalization**
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-IndicMix--AI-yellow.svg)](https://huggingface.co/Adityapande403/IndicMix-AI)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B-green.svg)](https://nodejs.org/)
 [![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-1.23.2-orange.svg)](https://onnxruntime.ai/)
-[![Tests](https://img.shields.io/badge/Tests-57%20Passed%20(100%25)-success.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-60%20Passed%20(100%25)-success.svg)]()
 [![P95 Latency](https://img.shields.io/badge/CPU_Latency_P95-0.05ms-brightgreen.svg)]()
 
 ---
@@ -183,9 +184,28 @@ Measured on **Intel(R) Core(TM) i7-14700K (20 physical cores, 28 logical threads
 All tests run without GPU dependencies and with zero network calls:
 
 ```bash
-# Python test suite (53 tests covering intent, moderation, PII, normalization, ONNX parity, robustness)
+# Python test suite (60 tests covering intent, moderation, PII, normalization, ONNX parity, proxy roundtrip)
 python -m pytest -v tests/
 
 # Node.js test suite (4 tests)
 cd node && npm test
+```
+
+---
+
+## 9. Hugging Face Hub
+
+The complete model checkpoints, quantized ONNX models, and standalone runners are hosted on Hugging Face:
+
+👉 **[https://huggingface.co/Adityapande403/IndicMix-AI](https://huggingface.co/Adityapande403/IndicMix-AI)**
+
+### Quick Download & Standalone Run
+
+```bash
+# Clone the model repository from Hugging Face
+git clone https://huggingface.co/Adityapande403/IndicMix-AI
+cd IndicMix-AI
+
+# Run standalone inference directly with ONNX Runtime
+python infer.py
 ```
